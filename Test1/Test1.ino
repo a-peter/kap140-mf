@@ -55,16 +55,16 @@ void drawPBuffer(void) {
 void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.clearBuffer();
 
-  drawDummy1(display, 16, 1);
+  drawDummy1(display, 12, 1);
   // drawH_full(display, 16, 1);
-  drawDummy2(display, 40, 1);
+  drawDummy2(display, 37, 1);
   // drawD_full(display, 40, 1);
-  drawDummy3(display, 64, 1);
+  drawDummy3(display, 62, 1);
   // drawG_half(display, 64, 1);
 
-  drawDummy1(display, 16, 35);
-  drawDummy4(display, 40, 35); // geteilte Mittellinie!
-  drawDummy1(display, 64, 35);
+  drawDummy1(display, 12, 35);
+  drawDummy4(display, 37, 35); // geteilte Mittellinie!
+  drawDummy1(display, 62, 35);
 
   drawARM(display, 86, 25);
   drawAP(display, 99, 0);
@@ -75,24 +75,42 @@ void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
 void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.clearBuffer();
 
-  draw8(display, 16, 1);
-  drawDummy3(display, 40, 1);
-  drawDummy5(display, 64, 1);
+  draw8(display, 12, 1);
+  drawDummy3(display, 37, 1);
+  drawDummy5(display, 62, 1);
 
-  drawDummy5(display, 16, 35);
-  drawDummy4(display, 40, 35);
-  drawDummy5(display, 64, 35);
+  drawDummy5(display, 12, 35);
+  drawDummy4(display, 37, 35);
+  drawDummy5(display, 62, 35);
 
-  drawARM(display, 86, 25);
-  // drawAP(display, 99, 0);
+  drawARM(display, 87, 25);
 
-  drawArrowUp(display, 104, 4);
-  drawPT(display, 107, 21);
-  drawArrowDown(display, 104, 48);
+  drawArrowUp(display, 113, 4);
+  drawPT(display, 116, 21);
+  drawArrowDown(display, 113, 48);
 
   display.sendBuffer();
 }
 
+void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
+  display.clearBuffer();
+
+  draw8(display, 4, 1);
+  draw8(display, 24, 1);
+  drawComma(display, 39, 22);
+  draw8(display, 49, 1);
+  draw8(display, 69, 1);
+  draw8(display, 89, 1);
+
+  drawAlert(display, 4, 36);
+  drawFpm(display, 56, 36);
+  drawFt(display, 90, 36);
+
+  drawHpa(display, 19, 51);
+  drawInHg(display, 66, 51);
+
+  display.sendBuffer();
+}
 
 void drawFScreenBuffer(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int pos = -1) {
   display.setDrawColor(1);
@@ -131,9 +149,10 @@ void loop(void) {
   // drawFScreenBuffer(oled_mid, 1);
 
   TCA9548A(2);
-  drawFScreenBuffer(oled_right);
+  drawDummyRight(oled_right);
+  // drawFScreenBuffer(oled_right);
 
-  delay(100);
+  delay(250);
 }
 
 // the loop function runs over and over again forever
