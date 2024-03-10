@@ -1,0 +1,4 @@
+#define vertical_half_width 6
+#define vertical_half_height 3
+static unsigned char vertical_half_bits[] = {
+   0x1e, 0x3f, 0x1e };

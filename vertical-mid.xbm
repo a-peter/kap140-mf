@@ -1,0 +1,4 @@
+#define vertical_mid_width 3
+#define vertical_mid_height 9
+static unsigned char vertical_mid_bits[] = {
+   0x02, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x07, 0x02 };
