@@ -55,12 +55,17 @@ void drawPBuffer(void) {
 void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.clearBuffer();
 
-  drawDummy1(display, 12, 1);
+  // drawDummy1(display, 12, 1);
+  // drawDummy1Sl(display, 12, 1);
   // drawH_full(display, 16, 1);
-  drawDummy2(display, 37, 1);
+  // drawDummy2(display, 37, 1);
   // drawD_full(display, 40, 1);
-  drawDummy3(display, 62, 1);
+  // drawDummy3(display, 62, 1);
   // drawG_half(display, 64, 1);
+
+  // drawHDG(display, 12, 1);
+  // drawROL(display, 12, 1);
+  drawNAV_left_top(display, 12, 1);
 
   drawDummy1(display, 12, 35);
   drawDummy4(display, 37, 35); // geteilte Mittellinie!
@@ -92,23 +97,39 @@ void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.sendBuffer();
 }
 
-void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
+void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int eight = 0) {
   display.clearBuffer();
 
-  draw8(display, 1, 1);
-  draw8(display, 21, 1);
-  draw8(display, 41, 1);
-  drawComma(display, 56, 22);
-  draw8(display, 66, 1);
-  draw8(display, 86, 1);
-  draw8(display, 106, 1);
+  if (eight) {
+    draw8(display, 1, 1);
+    draw8(display, 21, 1);
+    draw8(display, 41, 1);
+    drawComma(display, 56, 22);
+    draw8(display, 66, 1);
+    draw8(display, 86, 1);
+    draw8(display, 106, 1);
 
-  drawAlert(display, 1, 36);
-  drawFpm(display, 52, 36);
-  drawFt(display, 86, 36);
+    drawAlert(display, 1, 36);
+    drawFpm(display, 52, 36);
+    drawFt(display, 86, 36);
 
-  drawHpa(display, 16, 51);
-  drawInHg(display, 63, 51);
+    drawHpa(display, 16, 51);
+    drawInHg(display, 63, 51);
+  } else {
+    draw8(display, 1, 1);
+    draw8(display, 21, 1);
+    drawComma(display, 36, 22);
+    draw8(display, 46, 1);
+    draw8(display, 66, 1);
+    draw8(display, 86, 1);
+
+    drawAlert(display, 1, 36);
+    drawFpm(display, 52, 36);
+    drawFt(display, 86, 36);
+
+    drawHpa(display, 16, 51);
+    drawInHg(display, 63, 51);
+  }
 
   display.sendBuffer();
 }
