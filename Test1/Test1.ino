@@ -67,7 +67,7 @@ void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   drawDummy1(display, 62, 35);
 
   drawARM(display, 86, 25);
-  drawAP(display, 99, 0);
+  drawAP(display, 101, 0);
 
   display.sendBuffer();
 }
@@ -75,19 +75,19 @@ void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
 void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.clearBuffer();
 
-  draw8(display, 12, 1);
-  drawDummy3(display, 37, 1);
-  drawDummy5(display, 62, 1);
+  draw8(display, 7, 1);
+  drawDummy3(display, 32, 1);
+  drawDummy5(display, 57, 1);
 
-  drawDummy5(display, 12, 35);
-  drawDummy4(display, 37, 35);
-  drawDummy5(display, 62, 35);
+  drawDummy5(display, 7, 35);
+  drawDummy4(display, 32, 35);
+  drawDummy5(display, 57, 35);
 
-  drawARM(display, 87, 25);
+  drawARM(display, 89, 25);
 
-  drawArrowUp(display, 113, 4);
-  drawPT(display, 116, 21);
-  drawArrowDown(display, 113, 48);
+  drawArrowUp(display, 114, 4);
+  drawPT(display, 117, 21);
+  drawArrowDown(display, 114, 48);
 
   display.sendBuffer();
 }
@@ -95,19 +95,20 @@ void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
 void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.clearBuffer();
 
-  draw8(display, 4, 1);
-  draw8(display, 24, 1);
-  drawComma(display, 39, 22);
-  draw8(display, 49, 1);
-  draw8(display, 69, 1);
-  draw8(display, 89, 1);
+  draw8(display, 1, 1);
+  draw8(display, 21, 1);
+  draw8(display, 41, 1);
+  drawComma(display, 56, 22);
+  draw8(display, 66, 1);
+  draw8(display, 86, 1);
+  draw8(display, 106, 1);
 
-  drawAlert(display, 4, 36);
-  drawFpm(display, 56, 36);
-  drawFt(display, 90, 36);
+  drawAlert(display, 1, 36);
+  drawFpm(display, 52, 36);
+  drawFt(display, 86, 36);
 
-  drawHpa(display, 19, 51);
-  drawInHg(display, 66, 51);
+  drawHpa(display, 16, 51);
+  drawInHg(display, 63, 51);
 
   display.sendBuffer();
 }
