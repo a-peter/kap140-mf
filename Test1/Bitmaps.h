@@ -316,9 +316,18 @@ void drawH_full(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
   drawVertical(u8g2, x+12, y+14);
 }
 
-void drawE(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+void drawE_full(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
   drawHorizontal(u8g2, x+2, y);
   drawHorizontal(u8g2, x+2, y+12);
+  drawHorizontal(u8g2, x+2, y+24);
+  drawVertical(u8g2, x, y+2);
+  drawVertical(u8g2, x, y+14);
+}
+
+void drawE_half(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawHorizontalHalf(u8g2, x+2, y+12);
+  drawHorizontalHalf(u8g2, x+7, y+12);
   drawHorizontal(u8g2, x+2, y+24);
   drawVertical(u8g2, x, y+2);
   drawVertical(u8g2, x, y+14);
@@ -348,13 +357,39 @@ void drawO(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
   drawVertical(u8g2, x+12, y+14);
 }
 
-void drawR(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+void drawP(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawHorizontal(u8g2, x+2, y+12);
+  drawVertical(u8g2, x, y+2);
+  drawVertical(u8g2, x, y+14);
+  drawVertical(u8g2, x+12, y+2);
+}
+
+void drawR_half(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawHorizontalHalf(u8g2, x+2, y+12);
+  drawHorizontalHalf(u8g2, x+7, y+12);
+  drawVertical(u8g2, x, y+2);
+  drawVertical(u8g2, x, y+14);
+  drawVertical(u8g2, x+12, y+2);
+  drawDiagonalBottom(u8g2, x+3, y+15);
+}
+
+void drawR_full(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
   drawHorizontal(u8g2, x+2, y);
   drawHorizontal(u8g2, x+2, y+12);
   drawVertical(u8g2, x, y+2);
   drawVertical(u8g2, x, y+14);
   drawVertical(u8g2, x+12, y+2);
   drawDiagonalBottom(u8g2, x+3, y+15);
+}
+
+void drawS(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawHorizontal(u8g2, x+2, y+12);
+  drawHorizontal(u8g2, x+2, y+24);
+  drawVertical(u8g2, x, y+2);
+  drawVertical(u8g2, x+12, y+14);
 }
 
 void drawV(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
@@ -365,7 +400,7 @@ void drawV(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
 }
 
 void draw8(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
-  drawE(u8g2, x, y);
+  drawE_full(u8g2, x, y);
   drawVertical(u8g2, x+12, y+2);
   drawVertical(u8g2, x+12, y+14);
 }
@@ -381,7 +416,7 @@ void drawHDG(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
 }
 
 void drawROL(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
-  drawR(u8g2, x, y);
+  drawR_full(u8g2, x, y);
   drawO(u8g2, x+SYMBOL_SPACING, y);
   drawL(u8g2, x+SYMBOL_SPACING+SYMBOL_SPACING, y);
 }
@@ -389,6 +424,41 @@ void drawROL(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
 void drawNAV_left_top(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
   drawN(u8g2, x, y);
   drawA_full(u8g2, x+SYMBOL_SPACING, y);
+  drawV(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawNAV_left_bottom(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawN(u8g2, x, y);
+  drawA_half(u8g2, x+SYMBOL_SPACING, y);
+  drawV(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawAPR_left_top(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawA_full(u8g2, x, y);
+  drawP(u8g2, x+SYMBOL_SPACING, y);
+  drawR_half(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawAPR_left_bottom(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawA_full(u8g2, x, y);
+  drawP(u8g2, x+SYMBOL_SPACING, y);
+  drawR_full(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawGS(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawG_half(u8g2, x+SYMBOL_SPACING, y);
+  drawS(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawREV_left_top(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawR_full(u8g2, x, y);
+  drawE_full(u8g2, x+SYMBOL_SPACING, y);
+  drawV(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawREV_left_bottom(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawR_full(u8g2, x, y);
+  drawE_half(u8g2, x+SYMBOL_SPACING, y);
   drawV(u8g2, x+SYMBOL_SPACING*2, y);
 }
 

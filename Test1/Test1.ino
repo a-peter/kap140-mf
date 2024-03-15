@@ -26,7 +26,7 @@ void setup(void) {
   for (int i = 0; i < 3; i++) {
     TCA9548A(i);
     oleds[i]->begin();
-    oleds[i]->setContrast(32);
+    oleds[i]->setContrast(1);
     oleds[i]->setDrawColor(1);
     oleds[i]->setBitmapMode(1);
   }
@@ -52,9 +52,31 @@ void drawPBuffer(void) {
 //   alert - fpm - ft
 //     hpa -  in - hg
 
-void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
+void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
   display.clearBuffer();
 
+  switch (i % 6) {
+    case 0:
+      drawDummy1(display, 12, 1);
+      drawDummy2(display, 37, 1);
+      drawDummy3(display, 62, 1);
+      break;
+    case 1:
+      drawHDG(display, 12, 1);
+      break;
+    case 2:
+      drawROL(display, 12, 1);
+      break;
+    case 3:
+      drawNAV_left_top(display, 12, 1);
+      break;
+    case 4:
+      drawAPR_left_top(display, 12, 1);
+      break;
+    case 5:
+      drawREV_left_top(display, 12, 1);
+      break;
+  }
   // drawDummy1(display, 12, 1);
   // drawDummy1Sl(display, 12, 1);
   // drawH_full(display, 16, 1);
@@ -65,11 +87,33 @@ void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
 
   // drawHDG(display, 12, 1);
   // drawROL(display, 12, 1);
-  drawNAV_left_top(display, 12, 1);
+  // drawNAV_left_top(display, 12, 1);
+  // drawAPR_left_top(display, 12, 1);
 
-  drawDummy1(display, 12, 35);
-  drawDummy4(display, 37, 35); // geteilte Mittellinie!
-  drawDummy1(display, 62, 35);
+  // Bottom
+  switch (i % 5) {
+    case 0:
+      drawDummy1(display, 12, 35);
+      drawDummy4(display, 37, 35); // geteilte Mittellinie!
+      drawDummy1(display, 62, 35);
+      break;
+    case 1:
+      drawNAV_left_bottom(display, 12, 35);
+      break;
+    case 2:
+      drawAPR_left_bottom(display, 12, 35);
+      break;
+    case 3:
+      drawGS(display, 12, 35);
+      break;
+    case 4:
+      drawREV_left_bottom(display, 12, 35);
+      break;
+  }
+  // drawDummy1(display, 12, 35);
+  // drawDummy4(display, 37, 35); // geteilte Mittellinie!
+  // drawDummy1(display, 62, 35);
+  // drawGS(display, 12, 35);
 
   drawARM(display, 86, 25);
   drawAP(display, 101, 0);
@@ -77,7 +121,7 @@ void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.sendBuffer();
 }
 
-void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
+void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
   display.clearBuffer();
 
   draw8(display, 7, 1);
@@ -97,10 +141,10 @@ void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display) {
   display.sendBuffer();
 }
 
-void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int eight = 0) {
+void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
   display.clearBuffer();
 
-  if (eight) {
+  if (i) {
     draw8(display, 1, 1);
     draw8(display, 21, 1);
     draw8(display, 41, 1);
@@ -155,26 +199,34 @@ void drawFScreenBuffer(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int pos = -1
   drawAP(display, 99, 0);
 
   if (pos == 1) {
-    drawE(oled_mid, 100, 35);
+    drawE_full(oled_mid, 100, 35);
   }
 
   display.sendBuffer();
 }
 
+int i = 0;
+
 void loop(void) {
   TCA9548A(0); // left Display
-  drawDummyLeft(oled_left);
+  drawDummyLeft(oled_left, i);
   // drawFScreenBuffer(oled_left);
 
   TCA9548A(1);
-  drawDummyMid(oled_mid);
+  drawDummyMid(oled_mid, i);
   // drawFScreenBuffer(oled_mid, 1);
 
   TCA9548A(2);
-  drawDummyRight(oled_right);
+  drawDummyRight(oled_right, i);
   // drawFScreenBuffer(oled_right);
 
-  delay(250);
+  Serial.print(i++); Serial.print(" ");
+  if (i % 10 == 0) {
+    i = 0;
+    Serial.print("\n");
+  }
+
+  delay(1000);
 }
 
 // the loop function runs over and over again forever
