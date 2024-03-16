@@ -115,8 +115,10 @@ void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
   // drawDummy1(display, 62, 35);
   // drawGS(display, 12, 35);
 
-  drawARM(display, 86, 25);
-  drawAP(display, 101, 0);
+  if ((i / 2) % 2 == 0) {
+    drawARM(display, 86, 25);
+    drawAP(display, 101, 0);
+  }
 
   display.sendBuffer();
 }
@@ -124,16 +126,38 @@ void drawDummyLeft(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
 void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
   display.clearBuffer();
 
-  draw8(display, 7, 1);
-  drawDummy3(display, 32, 1);
-  drawDummy5(display, 57, 1);
+  // Top
+  switch (i % 4) {
+    case 0: 
+      draw8(display, 7, 1);
+      drawDummy3(display, 32, 1);
+      drawDummy5(display, 57, 1);
+      break;
+    case 1:
+      drawALT_mid(display, 7, 1);
+      break;
+    case 2:
+      drawVS(display, 7, 1);
+      break;
+    case 3:
+      drawGS(display, 7, 1);
+      break;
+  }
 
-  drawDummy5(display, 7, 35);
-  drawDummy4(display, 32, 35);
-  drawDummy5(display, 57, 35);
+  // Bottom
+  switch ((i/2) % 2) {
+    case 0:
+      drawDummy5(display, 7, 35);
+      drawDummy4(display, 32, 35);
+      drawDummy5(display, 57, 35);
+      break;
+    case 1:
+      drawALT_mid(display, 7, 35);
+      drawARM(display, 89, 25);
+      break;
+  }
 
-  drawARM(display, 89, 25);
-
+  // side
   drawArrowUp(display, 114, 4);
   drawPT(display, 117, 21);
   drawArrowDown(display, 114, 48);
@@ -144,7 +168,8 @@ void drawDummyMid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
 void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
   display.clearBuffer();
 
-  if (i) {
+  if (1 == 0) {
+    // 8 digits do not look good.
     draw8(display, 1, 1);
     draw8(display, 21, 1);
     draw8(display, 41, 1);
@@ -160,19 +185,42 @@ void drawDummyRight(U8G2_SSD1306_128X64_NONAME_F_HW_I2C display, int i = 0) {
     drawHpa(display, 16, 51);
     drawInHg(display, 63, 51);
   } else {
-    draw8(display, 1, 1);
-    draw8(display, 21, 1);
-    drawComma(display, 36, 22);
-    draw8(display, 46, 1);
-    draw8(display, 66, 1);
-    draw8(display, 86, 1);
+    if (i % 2 == 0) {
+      draw4(display, 1, 1);
+      draw3(display, 21, 1);
+      drawComma(display, 36, 22);
+      draw2(display, 46, 1);
+      draw1(display, 66, 1);
+      draw0(display, 86, 1);
+    } else {
+      draw5(display, 1, 1);
+      draw6(display, 21, 1);
+      drawComma(display, 36, 22);
+      draw7(display, 46, 1);
+      draw8(display, 66, 1);
+      draw9(display, 86, 1);
+    }
 
-    drawAlert(display, 1, 36);
-    drawFpm(display, 52, 36);
-    drawFt(display, 86, 36);
+    switch(i % 6) {
+      case 0:
+        break;
+      case 1:
+        drawAlert(display, 1, 36);
+        break;
+      case 2:
+        drawFpm(display, 52, 36);
+        break;
+      case 3:
+        drawFt(display, 86, 36);
+        break;
+      case 4:
+        drawHpa(display, 16, 51);
+        break;
+      case 5:
+        drawInHg(display, 63, 51);
+        break;
+    }
 
-    drawHpa(display, 16, 51);
-    drawInHg(display, 63, 51);
   }
 
   display.sendBuffer();

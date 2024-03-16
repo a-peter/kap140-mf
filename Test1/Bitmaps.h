@@ -392,17 +392,17 @@ void drawS(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
   drawVertical(u8g2, x+12, y+14);
 }
 
+void drawT(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawVerticalMid(u8g2, x+6, y+2);
+  drawVerticalMid(u8g2, x+6, y+14);
+}
+
 void drawV(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
   drawVertical(u8g2, x+12, y+2);
   drawVertical(u8g2, x+12, y+14);
   drawDiagonalTop(u8g2, x+3, y+3);
   drawDiagonalBottom(u8g2, x+3, y+15);
-}
-
-void draw8(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
-  drawE_full(u8g2, x, y);
-  drawVertical(u8g2, x+12, y+2);
-  drawVertical(u8g2, x+12, y+14);
 }
 
 // Words
@@ -460,6 +460,72 @@ void drawREV_left_bottom(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y)
   drawR_full(u8g2, x, y);
   drawE_half(u8g2, x+SYMBOL_SPACING, y);
   drawV(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawALT_mid(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawA_full(u8g2, x, y);
+  drawL(u8g2, x+SYMBOL_SPACING, y);
+  drawT(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+void drawVS(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  // empty
+  drawV(u8g2, x+SYMBOL_SPACING, y);
+  drawS(u8g2, x+SYMBOL_SPACING*2, y);
+}
+
+// ----------------------------------------------------------------------------
+// Numbers
+void draw0(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawHorizontal(u8g2, x+2, y+24);
+  drawVertical(u8g2, x, y+2);
+  drawVertical(u8g2, x, y+14);
+  drawVertical(u8g2, x+12, y+2);
+  drawVertical(u8g2, x+12, y+14);
+}
+void draw1(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawVertical(u8g2, x+12, y+2);
+  drawVertical(u8g2, x+12, y+14);
+}
+void draw2(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawHorizontal(u8g2, x+2, y+12);
+  drawHorizontal(u8g2, x+2, y+24);
+  drawVertical(u8g2, x+12, y+2);
+  drawVertical(u8g2, x, y+14);
+}
+void draw3(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  drawHorizontal(u8g2, x+2, y+12);
+  drawHorizontal(u8g2, x+2, y+24);
+  draw1(u8g2, x, y);
+}
+void draw4(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y+12);
+  drawVertical(u8g2, x, y+2);
+  drawVertical(u8g2, x+12, y+2);
+  drawVertical(u8g2, x+12, y+14);
+}
+void draw5(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawS(u8g2, x, y);
+}
+void draw6(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  draw5(u8g2, x, y);
+  drawVertical(u8g2, x, y+14);
+}
+void draw7(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  drawHorizontal(u8g2, x+2, y);
+  draw1(u8g2, x, y);
+}
+void draw8(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  draw0(u8g2, x, y);
+  drawHorizontal(u8g2, x+2, y+12);
+}
+void draw9(U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2, int x, int y) {
+  draw5(u8g2, x, y);
+  drawVertical(u8g2, x+12, y+2);
+
 }
 
 // Dummies
